@@ -67,11 +67,52 @@
     <script>
         let counter = 0;
 
+        // Функция для отправки данных на сервер (регистрация пользователя)
+        function registerUser() {
+            fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ user_id: YOUR_USER_ID, username: YOUR_USERNAME })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка при отправке данных на сервер');
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+        }
+
+        // Функция для обновления счета пользователя при нажатии на кнопку
         function incrementCounter() {
             counter++;
             document.getElementById('counter').innerText = counter;
+
+            // Отправка данных на сервер (обновление счета)
+            fetch('/update_score', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ score: counter })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка при отправке данных на сервер');
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
         }
+
+        // Регистрация пользователя при загрузке страницы
+        window.onload = function() {
+            registerUser();
+        };
     </script>
 </body>
 </html>
-
