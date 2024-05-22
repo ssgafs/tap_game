@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tap Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .tap-button {
+            font-size: 24px;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button class="tap-button" onclick="tap()">Tap me!</button>
+    <p id="tap-count">Taps: 0</p>
+
+    <script>
+        let tapCount = 0;
+
+        function tap() {
+            tapCount++;
+            document.getElementById('tap-count').innerText = 'Taps: ' + tapCount;
+        }
+
+        // Telegram Web Apps API
+        window.Telegram.WebApp.ready();
+    </script>
+</body>
+</html>
